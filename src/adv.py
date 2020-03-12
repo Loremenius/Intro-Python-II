@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from player import Item
 
 # Declare all the rooms
 
@@ -22,6 +23,8 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+sword = Item("sword", "A sword made of plasma")
+
 
 # Link rooms together
 
@@ -34,6 +37,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+room["outside"].items.append(sword)
 #
 # Main
 #
@@ -50,4 +54,4 @@ player = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-player.move_room()
+player.player_action()

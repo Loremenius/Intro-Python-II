@@ -8,9 +8,13 @@ class Room():
         self.e_to = None
         self.s_to = None
         self.w_to = None
+        self.items = []
     
     def display_info(self):
+        print("\n\n---------------------")
         print(f"\nYou are in {self.name}. {self.description}")
+        for item in self.items:
+            item.display_info()
 # return { boolean:false, message: "Must be direction north, south, east, or west"}
     def check_move(self, move):
         if move == "north":
@@ -35,4 +39,12 @@ class Room():
                 return True, self.e_to
         else:
             return False, "Must be direction north, south, east, or west"  
+    
+    def check_for_item(self, name):
+        item_list = list(filter(lambda item: item.name == name, self.items))
+        if len(item_list) == 0:
+            print(f"There is no item called {name}")
+            return None
+        else:
+            return item_list[0]
         
